@@ -1,5 +1,5 @@
 # understory.cloud
 Tools tangential to the understory
 
--   [Gaea](https://gaea.understory.cloud)
--   [Liana](https://liana.understory.cloud)
+-   [Gaea](//github.com/canopy/gaea)
+-   [Liana](//github.com/canopy/liana)
