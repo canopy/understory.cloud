@@ -4,9 +4,16 @@ version = "0.0.3"
 description = "Navigate the various projects tangential to the understory."
 authors = ["Angelo Gladding <angelo@lahacker.net>"]
 license = "CC0-1.0"
+repository = "https://understory.cloud/understory.cloud.git"
 
 [tool.poetry.plugins."web.apps"]
 understory_cloud = "understory_cloud:app"
+# overstory_directory = "understory_cloud.overstory_directory:app"
+# canopy_directory = "understory_cloud.canopy_directory:app"
+# canopy_garden = "understory_cloud.canopy_garden:app"
+# canopy_host = "understory_cloud.canopy_host:app"
+# understory_rocks = "understory_cloud.understory_rocks:app"
+understory_stream = "understory_cloud.understory_stream:app"
 
 [tool.poetry.dependencies]
 python = "^3.9,<3.10"

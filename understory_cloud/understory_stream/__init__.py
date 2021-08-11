@@ -13,7 +13,7 @@ def set_data_sources(handler, app):
 
 
 app = web.application(
-    "understory.cloud",
+    "understory.stream",
     static=__name__,
     mounts=(indieweb.indieauth.client.app,),
     wrappers=(
@@ -52,15 +52,6 @@ class Understory:
         return templates.understory()
 
 
-@app.route(r"epiphytes")
-class Epiphytes:
-    """."""
-
-    def get(self):
-        """."""
-        return templates.epiphytes()
-
-
 @app.route(r"liana")
 class Liana:
     """."""
@@ -68,15 +59,6 @@ class Liana:
     def get(self):
         """."""
         return templates.liana()
-
-
-@app.route(r"canopy")
-class Canopy:
-    """."""
-
-    def get(self):
-        """."""
-        return templates.canopy()
 
 
 @app.route(r"overstory")
