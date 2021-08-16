@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "understory.cloud"
-version = "0.0.3"
+version = "0.0.4"
 description = "Navigate the various projects tangential to the understory."
 authors = ["Angelo Gladding <angelo@lahacker.net>"]
 license = "CC0-1.0"

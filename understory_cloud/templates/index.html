@@ -4,7 +4,7 @@ $def with ()
 <html>
 <head>
 <title>Understory Cloud</title>
-<link rel=stylesheet href=/static/inter.css>
+<link rel=stylesheet href=/static/theme.css>
 <script src=/static/understory.js></script>
 <script>
 const { getBrowser } = understory
@@ -13,11 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll(`.gaea-dist`).forEach(el => {
       el.style.display = 'none'
   })
+  document.querySelectorAll(`.liana-dist`).forEach(el => {
+      el.style.display = 'none'
+  })
   document.querySelector(`.$${getBrowser().os.toLowerCase()}`).style.display = 'block'
   document.querySelector(`.$${getBrowser().browser.toLowerCase()}`).style.display = 'block'
 
   /* sound */
-
   const play = document.querySelector('.play')
   const audio = document.querySelector('audio')
   play.onclick = () => {
@@ -36,20 +38,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const balloon = document.querySelector('.balloon')
-  const gaea = document.querySelector('.gaea img')
+  const gaea = document.querySelector('.gaea')
   gaea.style.position = 'absolute'
   gaea.style.cursor = 'pointer'
   gaea.style.padding = '1em'
   // TODO reset boundaries upon window resize
   gaea.style.top = getRndInteger(200, 300) + 'px'
-  gaea.style.right = getRndInteger(100, 200) + 'px'
+  gaea.style.left = getRndInteger(100, 200) + 'px'
   setInterval(() => {
     const new_top = Number(gaea.style.top.replace('px', '')) + getRndInteger(-1, 1)
-    const new_right = Number(gaea.style.right.replace('px', '')) + getRndInteger(-1, 1)
+    const new_left = Number(gaea.style.left.replace('px', '')) + getRndInteger(-1, 1)
     gaea.style.top = new_top + 'px'
-    gaea.style.right = new_right + 'px'
-    balloon.style.top = new_top + 64 + 'px'
-    balloon.style.right = new_right - 64 + 'px'
+    gaea.style.left = new_left + 'px'
+    // balloon.style.top = new_top + 'px'
+    // balloon.style.left = new_left - 'px'
   }, 80);
   gaea.onmouseover = () => {
     balloon.style.display = 'block'
@@ -82,146 +84,200 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 </script>
 <style>
-.play {
-    position: absolute;
-    right: 1em;
-    top: 1em; }
 html {
-    background-color: #222;
-    line-height: 1.5;
-    margin: 0 auto;
-    overflow-x: hidden; }
-body {
-    /* background-color: #ffefd5; */
-    font: 300 16px Inter;
-    margin: 0; }
-header {
-    /* background-color: #728783; */
-    grid-column: 1;
-    grid-row: 4;
-    padding: 1em; }
+    background-color: #222; }
+body.light {
+    background-image: linear-gradient(#ffefd5, #678);
+}
+body.dark {
+    background-image: linear-gradient(#00102a, #678);
+}
 h1 a, h2 a, h3 a, h4 a {
     color: #000;
     text-decoration: none; }
 h1 {
-    grid-column: 1;
-    grid-row: 3;
     font-size: 2em; }
-#canopy-directory {
+
+body.light div.aboveground {
     background-image: url(/static/sun.svg);
-    background-position: top left;
+}
+body.dark div.aboveground {
+    background-image: url(/static/moon.svg);
+}
+div.aboveground {
+    background-position: 5em 3em;
     background-repeat: no-repeat;
-    background-size: 8em;
-    grid-column: 1;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    margin: 1em;
-    padding-bottom: 1em;
-    padding-left: 2em;
-    padding-top: 9em; }
+    background-size: 10em;
+    display: grid;
+    grid-template-columns: 2em 20em auto 4em;
+    grid-template-rows: auto auto auto;
+    padding-top: 2em; }
+header {
+    /* background-color: #728783; */
+    grid-column: 2;
+    grid-row: 3;
+    padding: 1em; }
+.overstory {
+    display: grid;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row: 1;
+    grid-template-columns: 20% 45% 35%;
+    grid-template-rows: auto auto; }
 #overstory-directory {
+    background-color: #563c18;
+    grid-column: 3;
+    grid-row: 1;
+    margin: 0 2em 0 4em;
+    padding: 1em; }
+.overstory-directory-examples {
     background-color: #6c6;
     border-radius: 1em;
-    grid-column-start: 2;
-    grid-column-end: 5;
-    grid-row: 1;
-    margin: 0 auto;
-    padding: 1em;
-    width: 40em; }
-#overstory {
-    background-color: #866c48;
-    /* border-top: 4em solid #5b5; */
-    grid-column-start: 2;
-    grid-column-end: 5;
-    grid-row: 2;
-    margin: 0 auto 0 8em;
-    padding: 1em;
-    width: 20em; }
-#canopy {
-    background-color: #393;
-    border-radius: 1em;
-    display: grid;
-    grid-column: span 4;
-    grid-row: 3;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
-    padding: 1em; }
-#canopy > div:first-child {
-    grid-row: span 2; }
-article {
-    background-image: linear-gradient(#ffefd5, #678);
-    display: grid;
-    grid-template-columns: 30% 20% 30% 20%;
-    grid-template-rows: auto auto auto auto auto auto;
-    padding: 2em 2em 0 2em; }
-#understory {
-    background-color: #664c28;
-    grid-column-start: 2;
+    grid-column-start: 1;
     grid-column-end: 4;
-    grid-row: 4;
+    grid-row: 2;
+    padding: 1em; }
+#overstory {
+    /* border-top: 4em solid #5b5; */
+    grid-column: 2;
+    grid-row: 3;
     margin-right: 2em;
     padding: 1em; }
-#liana {
-    background-color: #060;
-    /* border-right: 1em solid #728783; */
+#canopy-host {
+    background-color: #563c18;
+    grid-column: 3;
+    grid-row: 3;
+    margin: 0 2em 0 4em;
+    padding: 1em; }
+#canopy-host button {
+    font-size: 1em; }
+
+#canopy-directory {
+    background-color: #563c18;
+    grid-column: 2;
+    grid-row: 2;
+    margin: 5em 0;
+    padding: 1em; }
+#canopy {
+    display: grid;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row: 2;
+    grid-template-columns: 65% 35%; }
+#canopy > div:first-child {
+    border-radius: 1em 0 0 1em;
+    grid-column: 1;
+    padding: 1em; }
+#canopy-garden {
+    border-radius: 1.25em;
+    grid-column: 2;
+    margin: -2em 0 -1em 0;
+    padding: 1em;
+    z-index: 9; }
+.canopy-left {
+    background-color: #393;
+    border-radius: 0 1em 1em 0;
+    grid-column: 1;
+    grid-row: 2; }
+.canopy-right {
+    background-color: #393;
+    border-radius: 1em 0 0 1em;
     grid-column: 4;
-    grid-row: 4;
+    grid-row: 2;
+    margin-left: 2em; }
+.understory {
+    display: grid;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row: 3;
+    grid-template-columns: 20% 45% 35%; }
+#liana {
+    grid-column: 1;
+    grid-row: 1;
+    margin-left: 2em;
+    padding: 1em; }
+#understory {
+    grid-column: 2;
     margin-right: 2em;
     padding: 1em; }
+#understory-host {
+    background-color: #563c18;
+    grid-column: 3;
+    grid-row: 1;
+    margin: 0 2em 0 4em;
+    padding: 1em; }
+
+div.ground {
+    display: grid;
+    grid-template-columns: 22em auto; }
 #gaea {
-    background-color: #3c341f;
     color: #ccc;
-    grid-column: span 3;
-    grid-row: 5;
+    border-radius: 0 0 0 1em;
+    grid-column: 2;
+    grid-row: 1;
     padding: 1em; }
+#gaea h2 a {
+    color: #ccc; }
 #understory-rocks {
-    background-color: #333;
+    border-radius: 0 0 1em 0;
     color: #eee;
-    grid-column: span 3;
-    grid-row: 6;
+    grid-column: 1;
+    grid-row: 1;
+    margin-right: 3em;
     padding: 1em; }
+#understory-rocks h3 a {
+    color: #eee; }
 #understory-stream {
-    background-color: #39f;
-    grid-column: span 3;
-    grid-row: 7;
     padding: 1em; }
-pre {
-    padding-left: 1em; }
-pre kbd:before {
-    content: '> '; }
+
+.iwc {
+    color: #999;
+    text-align: right; }
 .gaea {
-    color: #000; }
+    color: #000;
+    left: 80px;
+    position: absolute;
+    top: 80px; }
 .balloon {
     padding: 1.5em;
     background: #fff;
     border-radius: 1.5em;
+    left: -2.5em;
     position: absolute;
     font-size: 1.5em;
-    text-align: center; }
+    text-align: center;
+    width: 10em; }
 .balloon .tip {
     width: 0;
     height: 0;
     position: absolute;
-    right: 2.3em;
+    left: 3.1em;
     top: -1em;
     border: solid .5em;
     border-color: transparent transparent #fff transparent; }
 .marquee {
     display: table;
     height: 1em;
-    padding: 1em 0;
+    padding: 0;
     width: 100%; }
 .marquee a {
     position: absolute; }
 audio {
     display: none; }
+.play {
+    position: absolute;
+    right: 1em;
+    top: 1em; }
+
+input {
+    width: 100%; }
 </style>
 </head>
-<body>
+<body class=light>
 
 <div class=play title=Play>▶️</div>
 
-<article>
+<div class=aboveground>
 
 <header id=understory-cloud>
     <h1><a href=/>Understory Cloud</a></h1>
@@ -237,70 +293,94 @@ audio {
         </form>
 </header>
 
-<section id=canopy-directory>
-    <h2><a href=//canopy.directory>Canopy Directory</a></h2>
-    <p>A directory of personal websites.</p>
-    <form action=//canopy.directory>
-        <input name=q> <button>Search</button>
-    </form>
-</section>
+<div class=overstory>
 
 <section id=overstory-directory>
-    <h2><a href=//overstory.directory>Overstory Directory</a></h2>
+    <h3><a href=//overstory.directory>Overstory Directory</a></h3>
     <p>A directory of social websites.</p>
     <form action=//overstory.directory>
         <input name=q> <button>Search</button>
     </form>
 </section>
 
-<section id=overstory>
+<div class=overstory-directory-examples></div>
+
+<section id=overstory class=overstory-bark>
     <h2><a href=/overstory>Overstory</a></h2>
     <p>A set of tools to create and manage social websites.</p>
 </section>
 
+<section id=canopy-host>
+    <h3><a href=//canopy.host>Canopy Host</a></h3>
+    <p><a href=//canopy.host/try><button>Try It</button></a></p>
+</section>
+
+</div>
+
+<div id=canopy-directory>
+    <h3><a href=//canopy.directory>Canopy Directory</a></h3>
+    <p>A directory of personal websites.</p>
+    <form action=//canopy.directory>
+        <input name=q> <button>Search</button>
+    </form>
+</div>
+
+<div class=canopy-left></div>
+
 <section id=canopy>
-    <div>
+    <div class=canopy-leaves>
         <h2><a href=/canopy>Canopy</a></h2>
-        <p>A decentralized network of personal websites.</p>
-        <pre><kbd>pip install canopy-network</kbd>
-<kbd>web serve canopy:app</kbd></pre>
+        <p>A complete tool to host your own personal website.</p>
     </div>
-    <div>
+    <div id=canopy-garden class=canopy-garden>
         <h3><a href=//canopy.garden>Canopy Garden</a></h3>
         <p>A directory of social applications.</a></p>
         <form action=//overstory.directory>
             <input name=q> <button>Search</button>
         </form>
     </div>
-    <div>
-        <h3><a href=//canopy.host>Canopy Host</a></h3>
-        <p><a href=//canopy.host/try><button>Try a Demo</button></a></p>
-    </div>
 </section>
 
-<section id=understory>
+<div class=canopy-right></div>
+
+<div class=understory>
+
+<section id=understory class=understory-bark>
     <h2><a href=/understory>Understory</a></h2>
-    <p>A set of tools to create and manage websites.</p>
-    <pre><kbd>pip install understory</kbd>
-<kbd>understory scaffold example</kbd>
-<kbd>web serve example:app</kbd>
-</pre>
+    <p>A set of tools to help create and manage websites.</p>
     <h3><a href=/epiphytes>Epiphytes</a></h3>
     <p>Self-hosted social applications.</p>
 </section>
 
-<section id=liana>
+<section id=liana class=liana-vine>
     <h2><a href=/liana>Liana</a></h2>
-    <p>A browser extension that pairs your browser with your personal website.</p>
-    <p class="gaea-dist firefox"><a href=/liana/liana-firefox.xpi><button>Firefox</button></a></p>
-    <!--p class="gaea-dist chrome"><a href=/gaea/gaea.exe><button>Windows</button></a></p-->
+    <p>A browser extension that:</p>
+    <ul>
+        <li>pairs your browser with your personal website
+    </ul>
+    <p class="liana-dist firefox"><a href=/liana/liana-firefox.xpi><button>Firefox</button></a></p>
+    <p class="liana-dist chrome"><a href=/liana/liana-chrome.xpi><button>Chrome</button></a></p>
 </section>
 
-</article>
+<section id=understory-host>
+    <h3><a href=//understory.host>Understory Host</a></h3>
+    <p><a href=//understory.host/plans><button>See Plans</button></a></p>
+</section>
 
-<section id=gaea>
+
+</div>
+
+</div>
+
+<div class="ground water">
+
+<section id=gaea class=gaea-soil>
     <h2><a href=/gaea>Gaea</a></h2>
-    <p>A desktop<!--/mobile/embedded-->/web application that pairs your desktop with your websites.</p>
+    <p>A desktop<!--/mobile/embedded-->/web application that:</p>
+    <ul>
+        <li>pairs your desktop with your personal website
+        <li>helps manage websites
+    </ul>
     <p class="gaea-dist linux"><a href=/gaea/gaea-amd64><button>Linux 64-bit</button></a></p>
     <p class="gaea-dist windows"><a href=/gaea/gaea.exe><button>Windows</button></a></p>
     <!--p class="gaea-dist macos"><a href=/gaea/gaea.dmg><button>Mac OS</button></a></p>
@@ -310,15 +390,19 @@ audio {
     <!--pre>pip install <a href=//pypi.org/project/libgaea>libgaea</a></pre-->
 </section>
 
-<section id=understory-rocks>
+<section id=understory-rocks class=understory-rocks>
     <h3><a href=//understory.rocks>Understory Rocks</a></h3>
     <p>Tests for the understory.</p>
     <form action=//understory.rocks/analyze>
         <input name=url> <button>Analyze</button>
     </form>
+    <p class=iwc><small><a href=//indieweb.org><img alt="Indie Web Camp"
+        src=/static/iwc.svg style="height:.75em;"></a> accepted here</small></p>
 </section>
 
-<section id=understory-stream>
+</div>
+
+<section id=understory-stream class=water>
     <h3><a href=//understory.stream>Understory Stream</a></h3>
     <p>Development of the understory.</p>
     <p class=marquee><a href=//angelogladding.com>Angelo&nbsp;Gladding</a></p>

@@ -1,3 +1,45 @@
+html {
+    line-height: 1.5;
+    margin: 0 auto;
+    overflow-x: hidden; }
+body {
+    font: 300 16px Inter;
+    margin: 0; }
+
+pre {
+    padding-left: 1em; }
+pre kbd:before {
+    content: '> '; }
+
+/* Colors */
+
+.overstory-bark {
+    background-color: #866c48; }
+
+#canopy > div:first-child {
+    border-right: .5em dashed #282; }
+.canopy-leaves {
+    background-color: #393; }
+.canopy-garden {
+    background-color: #282; }
+
+.understory-bark {
+    background-color: #664c28; }
+.liana-vine {
+    background-color: #060;
+    border-right: .5em dashed #664c28; }
+
+.understory-rocks {
+    background-color: #333; }
+.gaea-soil {
+    background-color: #3c341f; }
+body.light .water {
+    background-color: #39f; }
+body.dark .water {
+    background-color: #06c; }
+
+/* Inter Font */
+
 @font-face {
   font-family: 'Inter';
   font-style:  normal;

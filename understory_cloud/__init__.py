@@ -34,40 +34,13 @@ class Index:
         return templates.index()
 
 
-@app.route(r"gaea")
-class Gaea:
+@app.route(r"overstory")
+class Overstory:
     """."""
 
     def get(self):
         """."""
-        return templates.gaea()
-
-
-@app.route(r"understory")
-class Understory:
-    """."""
-
-    def get(self):
-        """."""
-        return templates.understory()
-
-
-@app.route(r"epiphytes")
-class Epiphytes:
-    """."""
-
-    def get(self):
-        """."""
-        return templates.epiphytes()
-
-
-@app.route(r"liana")
-class Liana:
-    """."""
-
-    def get(self):
-        """."""
-        return templates.liana()
+        return templates.overstory()
 
 
 @app.route(r"canopy")
@@ -79,10 +52,37 @@ class Canopy:
         return templates.canopy()
 
 
-@app.route(r"overstory")
-class Overstory:
+@app.route(r"liana")
+class Liana:
     """."""
 
     def get(self):
         """."""
-        return templates.overstory()
+        return templates.liana()
+
+
+@app.route(r"epiphytes")
+class Epiphytes:
+    """."""
+
+    def get(self):
+        """."""
+        return templates.epiphytes()
+
+
+@app.route(r"understory")
+class Understory:
+    """."""
+
+    def get(self):
+        """."""
+        return templates.understory()
+
+
+@app.route(r"gaea")
+class Gaea:
+    """."""
+
+    def get(self):
+        """."""
+        return templates.gaea()
