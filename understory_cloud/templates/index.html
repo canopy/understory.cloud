@@ -9,6 +9,14 @@ $def with ()
 <script>
 const { getBrowser } = understory
 document.addEventListener('DOMContentLoaded', () => {
+  let scroll_counter = 0
+  const scroller = setInterval(() => {
+    if (scroll_counter++ === 50) {
+      clearTimeout(scroller)
+    }
+    window.scrollBy(0, 8)
+  }, 20);
+
   /* show appropriate downloads for current os/browser */
   document.querySelectorAll(`.gaea-dist`).forEach(el => {
       el.style.display = 'none'
@@ -98,12 +106,24 @@ h1 a, h2 a, h3 a, h4 a {
 h1 {
     font-size: 2em; }
 
-body.light div.aboveground {
-    background-image: url(/static/sun.svg);
-}
-body.dark div.aboveground {
-    background-image: url(/static/moon.svg);
-}
+div.sunmoon {
+    border-radius: 2em;
+    height: 10em;
+    position: absolute;
+    top: 6em;
+    left: 8em;
+    width: 10em; }
+div.eye {
+    background-image: url(/static/eye.jpg);
+    background-height: 4em;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 4em;
+    height: 12em; }
+body.light div.sunmoon {
+    background-image: url(/static/sun.svg); }
+body.dark div.sunmoon {
+    background-image: url(/static/moon.svg); }
 div.aboveground {
     background-position: 5em 3em;
     background-repeat: no-repeat;
@@ -413,6 +433,8 @@ input {
 <div class=balloon style=display:none>Host your self&thinsp;&mdash;<br>
 <em>yourself!</em><span class=tip></span></div>
 </a>
+
+<div class=sunmoon><div class=eye></div></div>
 
 <audio controls autoplay loop muted>
 <source src=/static/rainforest-stream.mp3 type=audio/mpeg>

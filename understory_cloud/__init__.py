@@ -1,88 +1,76 @@
 """Navigate the various projects tangential to the understory."""
 
-from understory import indieweb, kv, sql, web
-from understory.web import tx
-
-
-def set_data_sources(handler, app):
-    """Set the request's data sources."""
-    tx.host.db = sql.db("understory-cloud.db")
-    tx.host.cache = web.cache(db=tx.host.db)
-    tx.host.kv = kv.db("understory-cloud", ":", {"jobs": "list"})
-    yield
-
+from understory import web
+from understory.apps import cache, indieauth_client
 
 app = web.application(
-    "understory.cloud",
-    static=__name__,
-    mounts=(indieweb.indieauth.client.app,),
-    wrappers=(
-        set_data_sources,
-        web.resume_session,
-        indieweb.indieauth.client.wrap,
+    __name__,
+    db=True,
+    mounts=(
+        cache.app,
+        indieauth_client.app,
     ),
 )
-templates = web.templates(__name__)
 
 
-@app.route(r"")
+@app.control(r"")
 class Index:
     """Full catalog of software projects."""
 
     def get(self):
         """Return the index."""
-        return templates.index()
+        return app.view.index()
 
 
-@app.route(r"overstory")
+@app.control(r"overstory")
 class Overstory:
     """."""
 
     def get(self):
         """."""
-        return templates.overstory()
+        return app.view.overstory()
 
 
-@app.route(r"canopy")
+@app.control(r"canopy")
 class Canopy:
     """."""
 
     def get(self):
         """."""
-        return templates.canopy()
+        return app.view.canopy()
 
 
-@app.route(r"liana")
+@app.control(r"liana")
 class Liana:
     """."""
 
     def get(self):
         """."""
-        return templates.liana()
+        return app.view.liana()
 
 
-@app.route(r"epiphytes")
+@app.control(r"epiphytes")
 class Epiphytes:
     """."""
 
     def get(self):
         """."""
-        return templates.epiphytes()
+        return app.view.epiphytes()
 
 
-@app.route(r"understory")
+@app.control(r"understory")
 class Understory:
     """."""
 
     def get(self):
         """."""
-        return templates.understory()
+        return app.view.understory()
 
 
-@app.route(r"gaea")
+@app.control(r"gaea")
 class Gaea:
     """."""
 
     def get(self):
         """."""
-        return templates.gaea()
+        return app.view.gaea()
